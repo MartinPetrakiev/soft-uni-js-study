@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Back-End - Exam - November 2020</title>
+    <link href="../static/css/site.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <a class="navbar-brand" href="/tutorials">Tutorials</a>
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/logout">Logout</a>
+                </li>
+
+            </ul>
+        </nav>
+
+        {{#if notification}}
+        <section class="notifications">
+            <p class="notification-message">Message...</p>
+        </section>
+        {{/if}}
+
+
+        <main>
+            <div class="container">
+                <h1 class="my-4">Title : JavaScript
+                </h1>
+
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <img class="img-fluid" src="{{course.imageUrl}}" alt="{{course.title}}" />
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <h4 class="my-3">Duration</h4>
+                        <p>{{course.duration}}</p>
+                        <h3 class="my-3">Description</h3>
+                        <p>{{course.description}}</p>
+
+                        {{#if creator}}
+                        <a class="btn btn-danger" href="/course/delete/{{course._id}}">Delete</a>
+                        <a class="btn btn-warning" href="/course/edit/{{course._id}}">Edit</a>
+                        {{else}}
+                        {{#if enrolled}}
+                        <span class="enrolled-span">You are already enrolled</span>
+                        {{else}}
+                        <a class="btn btn-primary" href="/course/enrolled/{{course._id}}">Enroll</a>
+                        {{/if}}
+                        {{/if}}
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="page-footer font-small">
+            <div class="footer-copyright text-center py-3">© 2020
+                <a href="https://softuni.bg/trainings/3048/js-back-end-september-2020">JS Back-End</a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+
+</html>
